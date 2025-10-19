@@ -152,17 +152,17 @@ namespace boost { namespace program_options {
         // We prefer the first long name over any others
         if (!m_long_names.empty())
         {
-            if (prefix_style == command_line_style::allow_long)
+            if (prefix_style & command_line_style::allow_long)
                 return "--" + *m_long_names.begin();
-            if (prefix_style == command_line_style::allow_long_disguise)
+            if (prefix_style & command_line_style::allow_long_disguise)
                 return "-" + *m_long_names.begin();
         }
         // sanity check: m_short_name[0] should be '-' or '/'
         if (m_short_name.length() == 2)
         {
-            if (prefix_style == command_line_style::allow_slash_for_short)
+            if (prefix_style & command_line_style::allow_slash_for_short)
                 return string("/") + m_short_name[1];
-            if (prefix_style == command_line_style::allow_dash_for_short)
+            if (prefix_style & command_line_style::allow_dash_for_short)
                 return string("-") + m_short_name[1];
         }
         if (!m_long_names.empty())
